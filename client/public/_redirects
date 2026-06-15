@@ -1,2 +1,2 @@
-/api/*  https://api.scoreforge.coach/api/:splat  200
+/api/*  https://scoreforge-production-aeed.up.railway.app/api/:splat  200
 /*      /index.html                                200
