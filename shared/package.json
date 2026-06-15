@@ -1,6 +1,6 @@
 {
   "name": "@scoreforge/shared",
   "version": "1.0.0",
-  "main": "src/types.ts",
+  "main": "dist/types.js",
   "types": "src/types.ts"
 }

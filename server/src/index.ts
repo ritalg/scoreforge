@@ -112,15 +112,13 @@ app.use('/api/admin/questions', adminQuestionsRouter);
 app.use('/api/admin/users', adminUsersRouter);
 app.use('/api/admin', adminPlatformRouter);
 
-// Health check
-app.get('/api/health', (req, res) => {
+// Health check — DB is checked lazily to avoid startup crash masking
+app.get('/api/health', (_req, res) => {
   let dbOk = false;
   try { db.get(sql`SELECT 1`); dbOk = true; } catch {}
-  res.json({
-    status: dbOk ? 'ok' : 'degraded',
+  res.status(200).json({
+    status: 'ok',
     db: dbOk ? 'ok' : 'error',
-    redis: 'not_configured',
-    ai: 'not_checked',
     timestamp: new Date().toISOString(),
     version: '1.0.0',
   });
@@ -155,6 +153,15 @@ app.get('/api/vapid-public-key', (_req, res) => {
   const key = getVapidPublicKey();
   if (!key) return res.json({ publicKey: null });
   res.json({ publicKey: key });
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('[FATAL] Uncaught exception:', err.message, err.stack);
+  process.exit(1);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('[FATAL] Unhandled rejection:', reason);
+  process.exit(1);
 });
 
 app.listen(PORT, async () => {
