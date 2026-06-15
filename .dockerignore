@@ -1,7 +1,6 @@
 node_modules
 **/node_modules
 **/.git
-**/dist
 client/dist
 server/dist
 data/*.db
