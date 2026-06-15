@@ -1,50 +1,31 @@
-# ── Stage 1: Build client ─────────────────────────────────────────────────────
-FROM node:20-alpine AS client-builder
-WORKDIR /app
-COPY package.json package-lock.json ./
-COPY client/package.json ./client/
-COPY shared/package.json ./shared/
-RUN npm ci --workspace=client --workspace=shared --ignore-scripts
-
-COPY shared ./shared/
-COPY client ./client/
-
-WORKDIR /app/client
-RUN npx vite build
-
-# ── Stage 2: Build server ─────────────────────────────────────────────────────
-FROM node:20-alpine AS server-builder
+# Single-stage build to avoid cross-stage native module issues
+FROM node:20-alpine
 WORKDIR /app
 
-# Need python3/make/g++ to compile native modules (better-sqlite3, bcrypt)
+# Build tools for native modules (better-sqlite3, bcrypt)
 RUN apk add --no-cache python3 make g++
 
+# Install all workspace deps (scripts enabled for native compilation)
 COPY package.json package-lock.json ./
 COPY server/package.json ./server/
+COPY client/package.json ./client/
 COPY shared/package.json ./shared/
-RUN npm ci --workspace=server --workspace=shared
+RUN npm ci
 
+# Copy source
 COPY shared ./shared/
 COPY server ./server/
+COPY client ./client/
 
-WORKDIR /app/server
-RUN npm run build
+# Build server TypeScript
+RUN cd server && npm run build
 
-# ── Stage 3: Production runtime ───────────────────────────────────────────────
-FROM node:20-alpine AS production
-WORKDIR /app
+# Build client (Vite)
+RUN cd client && npx vite build
 
-# Copy package manifests so Node resolves workspaces correctly
-COPY package.json package-lock.json ./
-COPY server/package.json ./server/
-COPY shared/package.json ./shared/
-
-# Copy compiled native node_modules from builder (includes .node binaries)
-COPY --from=server-builder /app/node_modules ./node_modules
-
-COPY shared ./shared/
-COPY --from=server-builder /app/server/dist ./server/dist
-COPY --from=client-builder /app/client/dist ./client/dist
+# Remove dev dependencies and source (keep dist + node_modules)
+RUN npm prune --omit=dev
+RUN rm -rf server/src client/src
 
 RUN mkdir -p /app/data && chown node:node /app/data
 
@@ -55,7 +36,7 @@ ENV PORT=3001
 ENV DATABASE_PATH=/app/data/scoreforge.db
 
 EXPOSE 3001
-HEALTHCHECK --interval=30s --timeout=5s --start-period=15s \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s \
   CMD wget -qO- http://localhost:3001/api/health || exit 1
 
 CMD ["node", "server/dist/index.js"]
