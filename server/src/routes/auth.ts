@@ -156,7 +156,8 @@ router.post('/login', async (req, res) => {
 
 // POST /api/auth/logout
 router.post('/logout', authGuard, (req, res) => {
-  res.clearCookie('token', { httpOnly: true, sameSite: 'strict', secure: process.env.NODE_ENV === 'production' });
+  const prod = process.env.NODE_ENV === 'production';
+  res.clearCookie('token', { httpOnly: true, sameSite: prod ? 'none' : 'lax', secure: prod });
   res.json({ message: 'Logged out' });
 });
 

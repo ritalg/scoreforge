@@ -61,10 +61,13 @@ export function generateToken(userId: number): string {
 }
 
 export function setAuthCookie(res: Response, token: string) {
+  const prod = process.env.NODE_ENV === 'production';
   res.cookie('token', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    secure: prod,
+    // 'none' required for cross-origin (scoreforge.coach → api.scoreforge-production.railway.app)
+    // 'lax' is fine for same-origin dev (localhost)
+    sameSite: prod ? 'none' : 'lax',
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 }
