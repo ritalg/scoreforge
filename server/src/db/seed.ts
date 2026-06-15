@@ -290,4 +290,8 @@ async function seed() {
   `);
 }
 
-seed().catch(console.error).finally(() => process.exit(0));
+export { seed };
+
+if (require.main === module) {
+  seed().catch(console.error).finally(() => process.exit(0));
+}

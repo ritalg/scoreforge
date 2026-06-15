@@ -11,7 +11,8 @@ import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { sql } from 'drizzle-orm';
 
-import { db, autoSetup } from './db';
+import { db, autoSetup, sqlite } from './db';
+import { seed } from './db/seed';
 import { recordRequest, recordError } from './routes/metrics';
 
 import authRouter from './routes/auth';
@@ -166,8 +167,17 @@ process.on('unhandledRejection', (reason) => {
 
 autoSetup();
 
+async function seedIfEmpty() {
+  const row = sqlite.prepare('SELECT COUNT(*) as count FROM users').get() as { count: number };
+  if (row.count === 0) {
+    console.log('[DB] Empty DB detected — running seed...');
+    await seed();
+  }
+}
+
 app.listen(PORT, async () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  await seedIfEmpty();
   initVapid();
   await initSearchIndex();
 });
