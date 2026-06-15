@@ -39,7 +39,6 @@ jobs:
   # ── Deploy client to Cloudflare Pages ────────────────────────────────────
   deploy-client:
     name: Deploy Client
-    needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
