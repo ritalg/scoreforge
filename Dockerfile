@@ -34,9 +34,13 @@ RUN npm run build
 FROM node:20-alpine AS production
 WORKDIR /app
 
-# Copy compiled node_modules from builder (includes native .node binaries)
+# Copy package manifests so Node resolves workspaces correctly
+COPY package.json package-lock.json ./
+COPY server/package.json ./server/
+COPY shared/package.json ./shared/
+
+# Copy compiled native node_modules from builder (includes .node binaries)
 COPY --from=server-builder /app/node_modules ./node_modules
-COPY --from=server-builder /app/server/node_modules ./server/node_modules
 
 COPY shared ./shared/
 COPY --from=server-builder /app/server/dist ./server/dist
