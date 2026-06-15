@@ -61,7 +61,7 @@ const ALLOWED_ORIGINS = [
   ...(process.env.APP_URL ? [process.env.APP_URL] : []),
 ];
 app.use(cors({
-  origin: (origin, cb) => {
+  origin: (origin: string | undefined, cb: (err: Error | null, allow?: boolean) => void) => {
     if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
     cb(new Error(`CORS: origin ${origin} not allowed`));
   },

@@ -108,7 +108,7 @@ export async function extractQuestionsFromText(
         passageId,
         questionNumber: q.questionNumber || null,
         questionText: q.questionText,
-        questionType: q.questionType || 'multiple_choice',
+        questionType: (q.questionType || 'multiple_choice') as 'multiple_choice' | 'grid_in',
         choiceA: q.choiceA || null,
         choiceB: q.choiceB || null,
         choiceC: q.choiceC || null,
@@ -116,8 +116,8 @@ export async function extractQuestionsFromText(
         correctAnswer: q.correctAnswer || 'A',
         explanation: q.explanation || null,
         topicKey: q.topicKey || null,
-        difficulty: q.difficulty || null,
-        module: q.module || null,
+        difficulty: (q.difficulty || null) as 'easy' | 'medium' | 'hard' | null,
+        module: (q.module || null) as 'm1' | 'm2_hard' | 'm2_easy' | null,
         status: 'pending_review',
       }).run();
       count++;

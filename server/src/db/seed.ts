@@ -188,14 +188,16 @@ async function seed() {
     if (!existingQ) {
       db.insert(schema.questions).values({
         questionText: q.questionText,
-        choicesJson: JSON.stringify(q.choices.map((c, i) => ({ id: String.fromCharCode(65 + i), text: c }))),
+        choiceA: q.choices[0] ?? null,
+        choiceB: q.choices[1] ?? null,
+        choiceC: q.choices[2] ?? null,
+        choiceD: q.choices[3] ?? null,
         correctAnswer: q.correctAnswer,
         topicKey: q.topicKey,
-        module: q.module as any,
-        difficulty: q.difficulty as any,
+        module: q.module as 'm1' | 'm2_hard' | 'm2_easy',
+        difficulty: q.difficulty as 'easy' | 'medium' | 'hard',
         explanation: q.explanation,
         status: 'approved',
-        createdBy: adminId,
       }).run();
     }
   }
