@@ -8,8 +8,11 @@ import path from 'path';
 import fs from 'fs';
 import multer from 'multer';
 
+const FIGURES_DIR = path.join(process.env.UPLOAD_DIR || '/app/uploads', 'figures');
+if (!fs.existsSync(FIGURES_DIR)) fs.mkdirSync(FIGURES_DIR, { recursive: true });
+
 const figureUpload = multer({
-  dest: path.join(__dirname, '../../../../../uploads/figures/'),
+  dest: FIGURES_DIR,
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (_req, file, cb) => {
     if (file.mimetype.startsWith('image/')) cb(null, true);
@@ -308,7 +311,8 @@ router.delete('/:id/figures/:figureId', authGuard, requireRole(['admin', 'supera
   const figure = db.select().from(schema.questionFigures).where(eq(schema.questionFigures.id, figureId)).get();
   if (!figure) return res.status(404).json({ error: 'Not found' });
 
-  const fullPath = path.join(__dirname, '../../../../../', figure.imagePath);
+  const relativePath = figure.imagePath.replace(/^\/uploads/, '');
+  const fullPath = path.join(process.env.UPLOAD_DIR || '/app/uploads', relativePath);
   try { fs.unlinkSync(fullPath); } catch {}
 
   db.delete(schema.questionFigures).where(eq(schema.questionFigures.id, figureId)).run();
