@@ -17,6 +17,7 @@ build/
 
 # Uploads (user-generated content)
 uploads/
+files/
 
 # Test artifacts
 test-results/
