@@ -11,7 +11,7 @@ import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { sql } from 'drizzle-orm';
 
-import { db } from './db';
+import { db, autoSetup } from './db';
 import { recordRequest, recordError } from './routes/metrics';
 
 import authRouter from './routes/auth';
@@ -163,6 +163,8 @@ process.on('unhandledRejection', (reason) => {
   console.error('[FATAL] Unhandled rejection:', reason);
   process.exit(1);
 });
+
+autoSetup();
 
 app.listen(PORT, async () => {
   console.log(`Server running on http://localhost:${PORT}`);
