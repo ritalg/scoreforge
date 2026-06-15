@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "mockTest": "Examen Simulacro",
+    "quiz": "Cuestionario",
+    "srDrill": "Práctica SR",
+    "flashcards": "Tarjetas",
+    "questionBank": "Banco de Preguntas",
+    "analytics": "Análisis",
+    "essayScorer": "Evaluador de Ensayos",
+    "errorLog": "Registro de Errores",
+    "studyGroups": "Grupos de Estudio",
+    "testCalendar": "Calendario de Exámenes",
+    "leaderboard": "Clasificación",
+    "profile": "Perfil y Logros",
+    "settings": "Configuración",
+    "signOut": "Cerrar Sesión"
+  },
+  "common": {
+    "loading": "Cargando…",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "submit": "Enviar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "done": "Listo",
+    "yes": "Sí",
+    "no": "No",
+    "correct": "Correcto",
+    "incorrect": "Incorrecto",
+    "error": "Algo salió mal",
+    "noData": "Sin datos todavía",
+    "search": "Buscar…"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "register": "Crear Cuenta",
+    "logout": "Cerrar Sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tienes cuenta?",
+    "haveAccount": "¿Ya tienes cuenta?"
+  },
+  "quiz": {
+    "startQuiz": "Iniciar Cuestionario",
+    "submitAnswer": "Enviar Respuesta",
+    "nextQuestion": "Siguiente Pregunta",
+    "flagForReview": "Marcar para Revisión",
+    "questionOf": "Pregunta {{current}} de {{total}}",
+    "correctAnswer": "Respuesta Correcta",
+    "explanation": "Explicación",
+    "score": "Puntaje",
+    "accuracy": "Precisión"
+  },
+  "gamification": {
+    "level": "Nivel {{n}}",
+    "xp": "{{n}} XP",
+    "streak": "Racha de {{n}} días",
+    "badge": "Insignia",
+    "leaderboard": "Clasificación"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "theme": "Tema",
+    "themeSystem": "Predeterminado del sistema",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro",
+    "fontSize": "Tamaño de fuente",
+    "notifications": "Notificaciones",
+    "privacy": "Privacidad",
+    "leaderboardOptOut": "Ocultarme de las clasificaciones"
+  }
+}

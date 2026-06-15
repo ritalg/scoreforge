@@ -1,0 +1,123 @@
+{
+  "app": { "name": "ScoreForge" },
+  "common": {
+    "loading": "Cargando...",
+    "optional": "(opcional)",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "confirm": "Confirmar",
+    "search": "Buscar...",
+    "create": "Crear",
+    "done": "Listo",
+    "error": "Algo salió mal",
+    "noData": "Sin datos todavía"
+  },
+  "auth": {
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "signIn": "Iniciar sesión",
+    "signInPrompt": "Inicia sesión en tu cuenta",
+    "createAccount": "Crear cuenta",
+    "createYourAccount": "Crea tu cuenta",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tienes cuenta?",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "backToLogin": "Volver al inicio de sesión",
+    "checkEmail": "Revisa tu correo",
+    "loginFailed": "Error al iniciar sesión. Inténtalo de nuevo.",
+    "registerFailed": "Error al registrarse. Inténtalo de nuevo.",
+    "iAm": "Soy...",
+    "birthYear": "Año de nacimiento",
+    "parentEmail": "Correo del padre/tutor",
+    "coppaNotice": "Como eres menor de 13 años, necesitamos el correo de tu padre o tutor para activar tu cuenta.",
+    "totpPrompt": "Ingresa el código de 6 dígitos de tu aplicación de autenticación.",
+    "totpCode": "Código de autenticación"
+  },
+  "roles": {
+    "student": "Estudiante",
+    "parent": "Padre/Tutor",
+    "tutor": "Tutor/Entrenador",
+    "admin": "Administrador",
+    "superadmin": "Super Administrador"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "mockTest": "Examen Simulacro",
+    "quiz": "Cuestionario",
+    "srDrill": "Práctica SR",
+    "flashcards": "Tarjetas",
+    "questionBank": "Banco de Preguntas",
+    "analytics": "Análisis",
+    "essayScorer": "Evaluador de Ensayos",
+    "errorLog": "Registro de Errores",
+    "studyGroups": "Grupos de Estudio",
+    "testCalendar": "Calendario de Exámenes",
+    "leaderboard": "Clasificación",
+    "profile": "Perfil y Logros",
+    "settings": "Configuración",
+    "signOut": "Cerrar Sesión"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "greeting": "¡Buenos {{timeOfDay}}, {{name}}!"
+  },
+  "quiz": {
+    "startPractice": "Iniciar Práctica",
+    "questionOf": "Pregunta {{current}} de {{total}}",
+    "flagForReview": "Marcar para revisión",
+    "submitQuiz": "Enviar Cuestionario",
+    "correct": "Correcto",
+    "incorrect": "Incorrecto"
+  },
+  "sr": {
+    "dueToday": "{{count}} pendientes hoy",
+    "mastered": "Dominado",
+    "startDrill": "Iniciar Práctica SR"
+  },
+  "gamification": {
+    "level": "Nivel {{n}}",
+    "xpToNext": "{{n}} XP para el siguiente nivel",
+    "streak": "Racha de {{n}} días",
+    "badgeEarned": "Insignia obtenida: {{name}}"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "theme": "Tema",
+    "themeSystem": "Predeterminado del sistema",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro",
+    "fontSize": "Tamaño de fuente",
+    "fontSizeSm": "Pequeño",
+    "fontSizeMd": "Mediano",
+    "fontSizeLg": "Grande",
+    "fontSizeXl": "Extra Grande",
+    "notifications": "Notificaciones",
+    "notifInApp": "En la app",
+    "notifEmail": "Correo",
+    "notifPush": "Push",
+    "privacy": "Privacidad",
+    "leaderboardOptOut": "Ocultarme de las clasificaciones",
+    "account": "Cuenta",
+    "dangerZone": "Zona Peligrosa"
+  },
+  "notifications": {
+    "study_reminder": "Recordatorio de Estudio",
+    "sr_due": "Revisión SR Pendiente",
+    "streak_at_risk": "Racha en Riesgo",
+    "streak_lost": "Racha Perdida",
+    "badge_earned": "Insignia Obtenida",
+    "assignment_due": "Tarea Próxima",
+    "test_countdown": "Cuenta Regresiva del Examen",
+    "score_prediction_updated": "Predicción Actualizada",
+    "group_challenge": "Desafío de Grupo",
+    "parent_digest": "Resumen Semanal"
+  }
+}

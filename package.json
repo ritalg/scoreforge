@@ -1,0 +1,15 @@
+{
+  "name": "scoreforge",
+  "private": true,
+  "workspaces": ["client", "server", "shared"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client && npm run build -w server",
+    "test": "npm run test -w client && npm run test -w server",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "@playwright/test": "^1.40.0"
+  }
+}

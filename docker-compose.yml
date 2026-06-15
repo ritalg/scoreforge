@@ -1,0 +1,63 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3001:3001"
+    env_file:
+      - server/.env
+    environment:
+      - ML_SERVICE_URL=http://ml-service:8000
+      - MEILISEARCH_URL=http://meilisearch:7700
+    depends_on:
+      - redis
+      - meilisearch
+      - ml-service
+    volumes:
+      - ./uploads:/app/uploads
+      - ./data:/app/data
+
+  ml-service:
+    build: ./ml-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./ml-service/models:/app/models
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  meilisearch:
+    image: getmeili/meilisearch:v1.6
+    ports:
+      - "7700:7700"
+    environment:
+      - MEILI_MASTER_KEY=${MEILISEARCH_KEY:-masterKey}
+    volumes:
+      - meili_data:/meili_data
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+
+volumes:
+  redis_data:
+  meili_data:
+  grafana_data:

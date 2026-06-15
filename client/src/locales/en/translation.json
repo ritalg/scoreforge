@@ -1,0 +1,123 @@
+{
+  "app": { "name": "ScoreForge" },
+  "common": {
+    "loading": "Loading...",
+    "optional": "(optional)",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "search": "Search...",
+    "create": "Create",
+    "done": "Done",
+    "error": "Something went wrong",
+    "noData": "No data yet"
+  },
+  "auth": {
+    "email": "Email address",
+    "password": "Password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "signIn": "Sign in",
+    "signInPrompt": "Sign in to your account",
+    "createAccount": "Create account",
+    "createYourAccount": "Create your account",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "backToLogin": "Back to login",
+    "checkEmail": "Check your email",
+    "loginFailed": "Login failed. Please try again.",
+    "registerFailed": "Registration failed. Please try again.",
+    "iAm": "I am a...",
+    "birthYear": "Birth year",
+    "parentEmail": "Parent / guardian email",
+    "coppaNotice": "Because you are under 13, we need your parent or guardian's email to activate your account.",
+    "totpPrompt": "Enter the 6-digit code from your authenticator app.",
+    "totpCode": "Authentication code"
+  },
+  "roles": {
+    "student": "Student",
+    "parent": "Parent / Guardian",
+    "tutor": "Tutor / Coach",
+    "admin": "Administrator",
+    "superadmin": "Super Admin"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "mockTest": "Mock Test",
+    "quiz": "Practice Quiz",
+    "srDrill": "SR Drill",
+    "flashcards": "Flashcards",
+    "questionBank": "Question Bank",
+    "analytics": "Analytics",
+    "essayScorer": "Essay Scorer",
+    "errorLog": "Error Log",
+    "studyGroups": "Study Groups",
+    "testCalendar": "Test Calendar",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile & Badges",
+    "settings": "Settings",
+    "signOut": "Sign Out"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": "Good {{timeOfDay}}, {{name}}!"
+  },
+  "quiz": {
+    "startPractice": "Start Practice",
+    "questionOf": "Question {{current}} of {{total}}",
+    "flagForReview": "Flag for review",
+    "submitQuiz": "Submit Quiz",
+    "correct": "Correct",
+    "incorrect": "Incorrect"
+  },
+  "sr": {
+    "dueToday": "{{count}} due today",
+    "mastered": "Mastered",
+    "startDrill": "Start SR Drill"
+  },
+  "gamification": {
+    "level": "Level {{n}}",
+    "xpToNext": "{{n}} XP to next level",
+    "streak": "{{n}} day streak",
+    "badgeEarned": "Badge earned: {{name}}"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "themeSystem": "System default",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "fontSize": "Font size",
+    "fontSizeSm": "Small",
+    "fontSizeMd": "Medium",
+    "fontSizeLg": "Large",
+    "fontSizeXl": "Extra Large",
+    "notifications": "Notifications",
+    "notifInApp": "In-app",
+    "notifEmail": "Email",
+    "notifPush": "Push",
+    "privacy": "Privacy",
+    "leaderboardOptOut": "Hide me from leaderboards",
+    "account": "Account",
+    "dangerZone": "Danger Zone"
+  },
+  "notifications": {
+    "study_reminder": "Daily Study Reminder",
+    "sr_due": "Spaced Repetition Due",
+    "streak_at_risk": "Streak At Risk",
+    "streak_lost": "Streak Lost",
+    "badge_earned": "Badge Earned",
+    "assignment_due": "Assignment Due",
+    "test_countdown": "Test Countdown",
+    "score_prediction_updated": "Score Prediction Updated",
+    "group_challenge": "Group Challenge",
+    "parent_digest": "Weekly Digest"
+  }
+}

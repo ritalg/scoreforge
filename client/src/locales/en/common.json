@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "mockTest": "Mock Test",
+    "quiz": "Practice Quiz",
+    "srDrill": "SR Drill",
+    "flashcards": "Flashcards",
+    "questionBank": "Question Bank",
+    "analytics": "Analytics",
+    "essayScorer": "Essay Scorer",
+    "errorLog": "Error Log",
+    "studyGroups": "Study Groups",
+    "testCalendar": "Test Calendar",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile & Badges",
+    "settings": "Settings",
+    "signOut": "Sign Out"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "yes": "Yes",
+    "no": "No",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "error": "Something went wrong",
+    "noData": "No data yet",
+    "search": "Search…"
+  },
+  "auth": {
+    "login": "Sign In",
+    "register": "Create Account",
+    "logout": "Sign Out",
+    "email": "Email address",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?"
+  },
+  "quiz": {
+    "startQuiz": "Start Quiz",
+    "submitAnswer": "Submit Answer",
+    "nextQuestion": "Next Question",
+    "flagForReview": "Flag for Review",
+    "questionOf": "Question {{current}} of {{total}}",
+    "correctAnswer": "Correct Answer",
+    "explanation": "Explanation",
+    "score": "Score",
+    "accuracy": "Accuracy"
+  },
+  "gamification": {
+    "level": "Level {{n}}",
+    "xp": "{{n}} XP",
+    "streak": "{{n}}-day streak",
+    "badge": "Badge",
+    "leaderboard": "Leaderboard"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "themeSystem": "System default",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "fontSize": "Font size",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "leaderboardOptOut": "Hide me from leaderboards"
+  }
+}
