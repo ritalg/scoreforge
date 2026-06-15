@@ -1,6 +1,17 @@
 import 'dotenv/config';
 import { db, schema } from './index';
-import { DEFAULT_FEATURE_FLAGS } from '../../../shared/src/types';
+const DEFAULT_FEATURE_FLAGS = [
+  { flagKey: 'study_groups', enabled: true },
+  { flagKey: 'essay_scorer', enabled: true },
+  { flagKey: 'mock_tests', enabled: true },
+  { flagKey: 'score_prediction', enabled: true },
+  { flagKey: 'gamification', enabled: true },
+  { flagKey: 'flashcards', enabled: true },
+  { flagKey: 'tutor_portal', enabled: true },
+  { flagKey: 'leaderboard_public', enabled: true },
+  { flagKey: 'sms_notifications', enabled: false },
+  { flagKey: 'ferpa_mode', enabled: false },
+] as const;
 import { eq } from 'drizzle-orm';
 import bcrypt from 'bcrypt';
 

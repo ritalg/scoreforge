@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { db, schema } from '../db';
 import { eq } from 'drizzle-orm';
-import type { UserRole } from '../../../shared/src/types';
+type UserRole = 'student' | 'parent' | 'tutor' | 'admin' | 'superadmin';
 
 export interface AuthUser {
   id: number;
