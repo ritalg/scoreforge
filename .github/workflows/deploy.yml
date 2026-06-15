@@ -22,9 +22,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build shared package
-        run: npm run build --workspace=shared
-
       - name: Server unit tests
         run: npm test --workspace=server
 
@@ -56,11 +53,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build shared
-        run: npm run build --workspace=shared
-
       - name: Build client
-        run: npm run build --workspace=client
+        run: cd client && npx vite build
         env:
           VITE_API_URL: https://api.scoreforge.coach
 
