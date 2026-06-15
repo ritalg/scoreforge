@@ -7,10 +7,11 @@ const router = Router();
 // POST /api/admin/migrate  — one-shot data migration from local dev DB
 // Accepts uploads → passages → questions in order, remaps all IDs
 router.post('/', authGuard, requireRole(['superadmin']), (req, res) => {
-  const { uploads = [], passages = [], questions = [] } = req.body as {
+  const { uploads = [], passages = [], questions = [], satTestDates = [] } = req.body as {
     uploads: Record<string, unknown>[];
     passages: Record<string, unknown>[];
     questions: Record<string, unknown>[];
+    satTestDates: Record<string, unknown>[];
   };
 
   const uploadIdMap: Record<number, number> = {};
@@ -19,6 +20,7 @@ router.post('/', authGuard, requireRole(['superadmin']), (req, res) => {
   let insertedPassages = 0;
   let insertedQuestions = 0;
   let skippedQuestions = 0;
+  let insertedSatDates = 0;
 
   const insertUpload = sqlite.prepare(`
     INSERT OR IGNORE INTO uploads
@@ -30,6 +32,11 @@ router.post('/', authGuard, requireRole(['superadmin']), (req, res) => {
   const insertPassage = sqlite.prepare(`
     INSERT OR IGNORE INTO passages (upload_id, passage_text, passage_type, topic_key, created_at)
     VALUES (?, ?, ?, ?, ?)
+  `);
+
+  const insertSatDate = sqlite.prepare(`
+    INSERT OR IGNORE INTO sat_test_dates (test_date, registration_deadline, is_official, created_at)
+    VALUES (?, ?, ?, ?)
   `);
 
   const insertQuestion = sqlite.prepare(`
@@ -108,6 +115,16 @@ router.post('/', authGuard, requireRole(['superadmin']), (req, res) => {
       if (info.changes > 0) insertedQuestions++;
       else skippedQuestions++;
     }
+
+    for (const d of satTestDates) {
+      const info = insertSatDate.run(
+        d.test_date ?? '',
+        d.registration_deadline ?? null,
+        d.is_official ?? 1,
+        d.created_at ?? new Date().toISOString(),
+      );
+      if (info.changes > 0) insertedSatDates++;
+    }
   });
 
   try {
@@ -118,6 +135,7 @@ router.post('/', authGuard, requireRole(['superadmin']), (req, res) => {
       insertedPassages,
       insertedQuestions,
       skippedQuestions,
+      insertedSatDates,
     });
   } catch (err: unknown) {
     res.status(500).json({ error: String(err) });
