@@ -1,11 +1,13 @@
-# Single-stage build to avoid cross-stage native module issues
-FROM node:20-alpine
+# Use Debian-based image for glibc compatibility with better-sqlite3 prebuilt binaries
+FROM node:20-slim
 WORKDIR /app
 
-# Build tools for native modules (better-sqlite3, bcrypt)
-RUN apk add --no-cache python3 make g++
+# Build tools needed for native modules if prebuilt binaries don't match
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 make g++ \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install all workspace deps (scripts enabled for native compilation)
+# Install all workspace deps
 COPY package.json package-lock.json ./
 COPY server/package.json ./server/
 COPY client/package.json ./client/
@@ -37,6 +39,6 @@ ENV DATABASE_PATH=/app/data/scoreforge.db
 
 EXPOSE 3001
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s \
-  CMD wget -qO- http://localhost:3001/api/health || exit 1
+  CMD node -e "require('http').get('http://localhost:3001/api/health', r => { process.exit(r.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"
 
 CMD ["node", "server/dist/index.js"]
