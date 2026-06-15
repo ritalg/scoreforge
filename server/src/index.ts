@@ -40,6 +40,7 @@ import adminUploadsRouter from './routes/admin/uploads';
 import adminQuestionsRouter from './routes/admin/questions';
 import adminUsersRouter from './routes/admin/users';
 import adminPlatformRouter from './routes/admin/platform';
+import adminMigrateRouter from './routes/admin/migrate';
 import adminScoringTablesRouter from './routes/admin/scoringTables';
 import adminFlashcardsRouter from './routes/admin/adminFlashcards';
 
@@ -111,6 +112,7 @@ app.use('/api/admin/flashcards', adminFlashcardsRouter);
 app.use('/api/admin/uploads', adminUploadsRouter);
 app.use('/api/admin/questions', adminQuestionsRouter);
 app.use('/api/admin/users', adminUsersRouter);
+app.use('/api/admin/migrate', adminMigrateRouter);
 app.use('/api/admin', adminPlatformRouter);
 
 // Health check — DB is checked lazily to avoid startup crash masking
