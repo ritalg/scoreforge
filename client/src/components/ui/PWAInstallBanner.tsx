@@ -8,6 +8,8 @@ export function PWAInstallBanner() {
   const [showInstall, setShowInstall] = useState(false);
   const [dismissed] = useState(() => localStorage.getItem('pwa-install-dismissed') === '1');
 
+  const [refreshDismissed, setRefreshDismissed] = useState(false);
+
   const { needRefresh, updateServiceWorker } = useRegisterSW({
     onRegistered(r: ServiceWorkerRegistration | undefined) {
       r && setInterval(() => r.update(), 60 * 60 * 1000);
@@ -37,7 +39,7 @@ export function PWAInstallBanner() {
     localStorage.setItem('pwa-install-dismissed', '1');
   }
 
-  if (needRefresh) {
+  if (needRefresh && !refreshDismissed) {
     return (
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-gray-900 text-white rounded-xl shadow-xl px-4 py-3 flex items-center gap-3 text-sm max-w-sm">
         <span>A new version is available</span>
@@ -45,6 +47,8 @@ export function PWAInstallBanner() {
           className="px-3 py-1 bg-brand-500 rounded-lg text-xs hover:bg-brand-400">
           Refresh
         </button>
+        <button onClick={() => setRefreshDismissed(true)}
+          className="text-gray-400 hover:text-white text-lg leading-none">&times;</button>
       </div>
     );
   }
