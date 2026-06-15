@@ -192,8 +192,9 @@ async function extractFromText(text: string, uploadId: number): Promise<number> 
   let count = 0;
 
   for (const q of allQuestions) {
+    if (!q.questionText || typeof q.questionText !== 'string' || !q.questionText.trim()) continue;
     let passageId: number | null = null;
-    if (q.passageText) {
+    if (q.passageText && typeof q.passageText === 'string' && q.passageText.trim()) {
       const key = q.passageText.slice(0, 100);
       if (passageCache.has(key)) {
         passageId = passageCache.get(key)!;
