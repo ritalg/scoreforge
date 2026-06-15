@@ -15,10 +15,14 @@ RUN npx vite build
 # ── Stage 2: Build server ─────────────────────────────────────────────────────
 FROM node:20-alpine AS server-builder
 WORKDIR /app
+
+# Need python3/make/g++ to compile native modules (better-sqlite3, bcrypt)
+RUN apk add --no-cache python3 make g++
+
 COPY package.json package-lock.json ./
 COPY server/package.json ./server/
 COPY shared/package.json ./shared/
-RUN npm ci --workspace=server --workspace=shared --ignore-scripts
+RUN npm ci --workspace=server --workspace=shared
 
 COPY shared ./shared/
 COPY server ./server/
@@ -30,10 +34,9 @@ RUN npm run build
 FROM node:20-alpine AS production
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-COPY server/package.json ./server/
-COPY shared/package.json ./shared/
-RUN npm ci --workspace=server --workspace=shared --omit=dev --ignore-scripts
+# Copy compiled node_modules from builder (includes native .node binaries)
+COPY --from=server-builder /app/node_modules ./node_modules
+COPY --from=server-builder /app/server/node_modules ./server/node_modules
 
 COPY shared ./shared/
 COPY --from=server-builder /app/server/dist ./server/dist
