@@ -29,13 +29,14 @@ RUN cd client && npx vite build
 RUN npm prune --omit=dev
 RUN rm -rf server/src client/src
 
-RUN mkdir -p /app/data && chown node:node /app/data
+RUN mkdir -p /app/data /app/uploads && chown node:node /app/data /app/uploads
 
 USER node
 
 ENV NODE_ENV=production
 ENV PORT=3001
 ENV DATABASE_PATH=/app/data/scoreforge.db
+ENV UPLOAD_DIR=/app/uploads
 
 EXPOSE 3001
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s \
