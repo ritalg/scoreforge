@@ -54,8 +54,17 @@ const PORT = parseInt(process.env.PORT || '3001');
 app.use(helmet());
 app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
+const ALLOWED_ORIGINS = [
+  'http://localhost:5173',
+  'https://scoreforge.coach',
+  'https://www.scoreforge.coach',
+  ...(process.env.APP_URL ? [process.env.APP_URL] : []),
+];
 app.use(cors({
-  origin: process.env.APP_URL || 'http://localhost:5173',
+  origin: (origin, cb) => {
+    if (!origin || ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
+    cb(new Error(`CORS: origin ${origin} not allowed`));
+  },
   credentials: true,
 }));
 
