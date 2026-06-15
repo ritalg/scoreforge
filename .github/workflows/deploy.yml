@@ -55,7 +55,7 @@ jobs:
       - name: Build client
         run: cd client && npx vite build
         env:
-          VITE_API_URL: https://api.scoreforge.coach
+          VITE_API_BASE_URL: https://scoreforge-production-aeed.up.railway.app
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy client/dist --project-name=scoreforge --commit-dirty=true
